@@ -53,6 +53,7 @@ void print(const char* str) {
     }
 }
 
+
 void printc(const char c) {
 
     switch (c) {
@@ -114,13 +115,14 @@ void set_cursor_pos(uint16_t pos) {
     outb(VGA_CRTC_DATA, (pos >> 8) & 0xFF);
 }
 
+
 void rotate_font_color(){
     color = (color & 0xF0) | (((color & 0x0F) + 1) % 16);
     if((color >> 4) == (color & 0x0F))
         rotate_font_color();
 }
 
+
 void set_font_color(uint8_t fc) {
     color = (color & 0xF0) | (fc & 0x0F);
 }
-

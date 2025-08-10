@@ -148,7 +148,7 @@ void isr_handler(uint32_t int_no) {
         print(exception_messages[int_no]);
         print(": num - ");
         printd(int_no);
-        print("Exception! System Halted\n");
+        print(" Exception! System Halted\n");
         for (;;);
     }
 }

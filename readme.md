@@ -11,8 +11,8 @@ The goal is to learn low-level system programming and how operating systems work
 - Text-mode VGA driver ✅
 - Global Descriptor Table (GDT) ✅
 - interrupt handling (IDT, IRQs) ✅
-- Paging with Higher Half Kernel
-- Memory allocator
+- Paging with Higher Half Kernel ✅
+- Memory allocator ✅
 - file system
 - Simple kernel shell
 

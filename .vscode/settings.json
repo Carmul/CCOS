@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "vga.h": "c"
+        "vga.h": "c",
+        "multiboot.h": "c",
+        "memutil.h": "c",
+        "stdio.h": "c",
+        "cstddef": "c",
+        "memory.h": "c",
+        "stdint.h": "c"
     }
 }

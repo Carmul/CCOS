@@ -2,6 +2,7 @@
 #define MEMUTIL_H
 
 void memset(void *dest, int val, uint32_t count);
+void memcpy(void *destptr, void *srcptr, uint32_t size);
 
 
 static inline void outb(uint16_t port, uint8_t val) {

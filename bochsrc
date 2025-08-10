@@ -1,0 +1,6 @@
+romimage: file=/usr/share/bochs/bochs-2.7/bios/BIOS-bochs-latest
+vgaromimage: file=/usr/share/bochs/bochs-2.7/bios/VGABIOS-lgpl-latest
+ata0-slave: type=cdrom, path=CCOS.iso, status=inserted
+boot:cdrom
+sound: driver=dummy
+display_library: x, options = "gui_debug"

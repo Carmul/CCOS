@@ -7,6 +7,7 @@
 #include "vga/vga.h"
 #include "timer/timer.h"
 #include "memory/memory.h"
+#include "heap/heap.h"
 
 #include "stdlib/memutil/memutil.h"
 #include "stdlib/string/string.h"
@@ -14,18 +15,15 @@
 
 #include "multiboot.h"
 
-void kmain(uint32_t magic, struct multiboot_info* boot_info) 
-{
+void kmain(uint32_t magic __attribute__((unused)), struct multiboot_info* boot_info) {
+	
 	clear_screan();
 	gdt_init();
 	idt_init();
 	timer_init();
+	memory_init(boot_info);
+	heap_init();
 
-	
-	set_font_color(VGA_COLOR_LIGHT_RED);
-	printf("GRUB magic value: 0x%X\n", magic);
-	print_mmaps(boot_info);
-	set_font_color(VGA_COLOR_WHITE);
-	
+
 	for(;;);
 }
