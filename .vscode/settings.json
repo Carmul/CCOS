@@ -6,6 +6,8 @@
         "stdio.h": "c",
         "cstddef": "c",
         "memory.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "string.h": "c",
+        "stdbool.h": "c"
     }
 }

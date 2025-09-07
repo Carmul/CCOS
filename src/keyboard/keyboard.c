@@ -3,7 +3,9 @@
 #include <stdbool.h>
 #include "keyboard.h"
 #include "../vga/vga.h"
+#include "../stdlib/stdio/stdio.h"
 #include "../stdlib/memutil/memutil.h"
+#include "../heap/heap.h"
 
 static const char base_map[128] = {
 /*00*/ 0, 27, '1','2','3','4','5','6','7','8','9','0','-','=', '\b', // 27 = ESC
@@ -59,9 +61,59 @@ void on_irq1() {
                 }
             }   
     }
-    if(c == 0) // ignore unknown keys
+    if(c == 0) // ignore unknown keys and non press
         return;
 
-    printc(c);
+    keyboard_buffer_put(c);
+    putc(c);
 }
 
+
+#define KEYBOARD_BUFFER_SIZE 128
+
+static char key_buffer[KEYBOARD_BUFFER_SIZE];
+static int key_buffer_head = 0;
+static int key_buffer_tail = 0;
+
+void keyboard_buffer_put(char c) {
+    int next = (key_buffer_head + 1) % KEYBOARD_BUFFER_SIZE;
+    if (next != key_buffer_tail) { // only add if buffer not full
+        key_buffer[key_buffer_head] = c;
+        key_buffer_head = next;
+    }
+}
+
+char keyboard_buffer_get() {
+    while (key_buffer_head == key_buffer_tail) {
+        // buffer empty, wait until a key is pressed
+        asm volatile("hlt");
+    }
+    char c = key_buffer[key_buffer_tail];
+    key_buffer_tail = (key_buffer_tail + 1) % KEYBOARD_BUFFER_SIZE;
+    return c;
+}
+
+
+char* read_line() {
+    int capacity = 16;
+    int length = 0;
+    char* buffer = kmalloc(capacity); // your kernel malloc function
+
+    while (1) {
+        char c = keyboard_buffer_get(); // your low-level input routine
+        if (c == '\n') { // Enter pressed
+            break;
+        }
+
+        buffer[length++] = c;
+
+        // Resize if needed
+        if (length >= capacity) {
+            capacity *= 2;
+            buffer = krealloc(buffer, capacity); // reallocate memory
+        }
+    }
+
+    buffer[length] = '\0'; // null-terminate the string
+    return buffer;
+}

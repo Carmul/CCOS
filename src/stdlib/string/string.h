@@ -2,7 +2,7 @@
 #define STRING_H
 
 uint16_t strlen(const char* str);
-
+uint16_t strcmp(const char* s1, const char* s2);
 
 
 
