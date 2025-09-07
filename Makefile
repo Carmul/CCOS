@@ -29,7 +29,8 @@ C_OBJS = \
 	$(BUILD_DIR)/keyboard.o \
 	$(BUILD_DIR)/stdio.o \
 	$(BUILD_DIR)/memory.o \
-	$(BUILD_DIR)/heap.o 
+	$(BUILD_DIR)/heap.o \
+	$(BUILD_DIR)/shell.o 
 
 
 ASM_OBJS = \
@@ -94,6 +95,9 @@ $(BUILD_DIR)/memory.o: $(SRC_DIR)/memory/memory.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/heap.o: $(SRC_DIR)/heap/heap.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/shell.o: $(SRC_DIR)/shell/shell.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(ISO)

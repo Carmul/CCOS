@@ -13,8 +13,8 @@ The goal is to learn low-level system programming and how operating systems work
 - interrupt handling (IDT, IRQs) ✅
 - Paging with Higher Half Kernel ✅
 - Memory allocator ✅
-- file system
-- Simple kernel shell
+- ram file system
+- Simple kernel shell ✅
 
 ---
 

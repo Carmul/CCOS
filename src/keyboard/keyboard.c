@@ -65,7 +65,6 @@ void on_irq1() {
         return;
 
     keyboard_buffer_put(c);
-    putc(c);
 }
 
 
@@ -102,9 +101,19 @@ char* read_line() {
     while (1) {
         char c = keyboard_buffer_get(); // your low-level input routine
         if (c == '\n') { // Enter pressed
+            putc('\n');
             break;
         }
+        if (c == '\b') {
+            if (length != 0) {
+                putc('\b');
+                buffer[length] = '\0';
+                length--;
+            }
+            continue;
+        }
 
+        putc(c);
         buffer[length++] = c;
 
         // Resize if needed

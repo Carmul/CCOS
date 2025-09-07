@@ -8,6 +8,9 @@
         "memory.h": "c",
         "stdint.h": "c",
         "string.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "shell.h": "c",
+        "heap.h": "c",
+        "keyboard.h": "c"
     }
 }
