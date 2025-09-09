@@ -10,11 +10,12 @@ The goal is to learn low-level system programming and how operating systems work
 - Bootable via GRUB (Multiboot-compliant) ✅
 - Text-mode VGA driver ✅
 - Global Descriptor Table (GDT) ✅
-- interrupt handling (IDT, IRQs) ✅
+- Interrupt handling (IDT, IRQs) ✅
 - Paging with Higher Half Kernel ✅
 - Memory allocator ✅
-- ram file system
+- RAM file system ✅
 - Simple kernel shell ✅
+- graphics
 
 ---
 

@@ -10,6 +10,8 @@
 #include "heap/heap.h"
 #include "keyboard/keyboard.h"
 #include "shell/shell.h"
+#include "fs/ramdisk/ramdisk.h"
+#include "fs/ramfs/ramfs.h"
 
 #include "stdlib/memutil/memutil.h"
 #include "stdlib/string/string.h"
@@ -25,13 +27,10 @@ void kmain(uint32_t magic __attribute__((unused)), struct multiboot_info* boot_i
 	timer_init();
 	memory_init(boot_info);
 	heap_init();
-
+	ramfs_init();
 
 	enable_shell();
 
-
-
 	for(;;);
 }
-
 

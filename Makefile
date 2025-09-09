@@ -30,8 +30,9 @@ C_OBJS = \
 	$(BUILD_DIR)/stdio.o \
 	$(BUILD_DIR)/memory.o \
 	$(BUILD_DIR)/heap.o \
-	$(BUILD_DIR)/shell.o 
-
+	$(BUILD_DIR)/shell.o \
+	$(BUILD_DIR)/ramdisk.o \
+	$(BUILD_DIR)/ramfs.o 
 
 ASM_OBJS = \
 	$(BUILD_DIR)/boot.o \
@@ -100,8 +101,14 @@ $(BUILD_DIR)/heap.o: $(SRC_DIR)/heap/heap.c | $(BUILD_DIR)
 $(BUILD_DIR)/shell.o: $(SRC_DIR)/shell/shell.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_DIR)/ramdisk.o: $(SRC_DIR)/fs/ramdisk/ramdisk.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/ramfs.o: $(SRC_DIR)/fs/ramfs/ramfs.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 run: $(ISO)
-	qemu-system-i386 -cdrom $< -monitor stdio
+	qemu-system-i386 -cdrom $< -m 256M -monitor stdio 
 
 clean:
 	rm -rf $(BUILD_DIR) $(ISO) $(KERNEL_BIN)

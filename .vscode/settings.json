@@ -11,6 +11,8 @@
         "stdbool.h": "c",
         "shell.h": "c",
         "heap.h": "c",
-        "keyboard.h": "c"
+        "keyboard.h": "c",
+        "ramdisk.h": "c",
+        "ratio": "c"
     }
 }
